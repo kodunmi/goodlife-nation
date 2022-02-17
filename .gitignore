@@ -1,1 +1,3 @@
 node_modules
+# ignor next build
+.next

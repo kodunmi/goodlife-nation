@@ -10,7 +10,6 @@ const Home: NextPage = () => {
     <AppLayout>
       <Head>
         <title>The Goodlife Nation</title>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Yellowtail&display=swap" rel="stylesheet"></link>
       </Head>
       <Header />
       <div>
@@ -61,28 +60,28 @@ const Home: NextPage = () => {
             <h3 className='text-secondary font-bold text-3xl mb-3 dark:!text-slate-200 ' >Walk With Us And Work With Us</h3>
             <hr />
            <ul className='mt-4'>
-             <li className='cursor-pointer mb-4 text-blue-700 hover:text-primary dark:text-slate-200 text-2xl flex items-center justify-between pr-8'>
+             <li className='cursor-pointer mb-4 transition duration-150 ease-in-out hover:scale-105 text-blue-700 hover:text-primary dark:text-slate-200 text-2xl flex items-center justify-between pr-8'>
                <p className='mr-8 '>OUR SERVICES</p>
                
                 <RiArrowRightCircleLine className='self-end' />
 
 
                </li>
-               <li className='cursor-pointer mb-4 text-blue-700 hover:text-primary dark:text-slate-200 text-2xl flex items-center justify-between pr-8'>
+               <li className='cursor-pointer mb-4  transition duration-150 ease-in-out hover:scale-105 text-blue-700 hover:text-primary dark:text-slate-200 text-2xl flex items-center justify-between pr-8'>
                <p className='mr-8 '>CAMPUS COMMUNITY</p>
                
                 <RiArrowRightCircleLine/>
 
 
                </li>
-               <li className='cursor-pointer mb-4 text-blue-700 hover:text-primary dark:text-slate-200 text-2xl flex items-center justify-between pr-8'>
+               <li className='cursor-pointer mb-4  transition duration-150 ease-in-out hover:scale-105 text-blue-700 hover:text-primary dark:text-slate-200 text-2xl flex items-center justify-between pr-8'>
                <p className='mr-8 '>MERCY SEAT</p>
                
                 <RiArrowRightCircleLine/>
 
 
                </li>
-               <li className='cursor-pointer mb-4 text-blue-700 hover:text-primary dark:text-slate-200 text-2xl flex items-center justify-between pr-8'>
+               <li className='cursor-pointer mb-4  transition duration-150 ease-in-out hover:scale-105 text-blue-700 hover:text-primary dark:text-slate-200 text-2xl flex items-center justify-between pr-8'>
                <p className='mr-8 '>BOWELS OF COMPASSION</p>
                
                 <RiArrowRightCircleLine/>

@@ -3,12 +3,13 @@ import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { RiTwitterFill, RiFacebookFill, RiInstagramFill, RiYoutubeFill } from 'react-icons/ri'
 import { useDarkMode } from '../../hooks'
+import { NavLink } from '..'
 
 export const navigation = [
-    { name: 'Home', href: '#', active: true },
-    { name: 'Services', href: '#' },
-    { name: 'About Us', href: '#' },
-    { name: 'Contact Us', href: '#' },
+    { name: 'Home', href: '/', active: true },
+    { name: 'Services', href: '/services' },
+    { name: 'About Us', href: '/about-us' },
+    { name: 'Contact Us', href: '/contact-us' },
 ]
 
 const socialIcons = [
@@ -40,7 +41,13 @@ export const NavBar = () => {
                             {/* Primary Navbar items */}
                             <div className="hidden md:flex items-center space-x-1">
                                 {
-                                    navigation.map(({ name, href, active }, index) => <a key={`snsn-${index}`} href="" className={`${active ? 'text-[#0d2a66] border-b-4 border-[#0d2a66]' : ''} py-4 px-2 text-white font-semibold hover:text-[#0d2a66] transition duration-300`}>{name}</a>)
+                                    navigation.map(({ name, href, active }, index) =>
+
+                                    <NavLink href={href}>
+                                         <a key={`snsn-${index}`} className={`px-2 text-white font-semibold hover:text-primary transition duration-300`}>{name}</a>
+                                    </NavLink>
+                                    
+                                    )
 
                                 }
                             </div>

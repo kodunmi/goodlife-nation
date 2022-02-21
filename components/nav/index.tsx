@@ -12,7 +12,7 @@ export const navigation = [
     { name: 'Contact Us', href: '/contact-us' },
 ]
 
-const socialIcons = [
+export const socialIcons = [
     { name: 'Facebook', href: '#', icon: <RiFacebookFill /> },
     { name: 'Twitter', href: '#', icon: <RiTwitterFill /> },
     { name: 'Instagram', href: '#', icon: <RiInstagramFill /> },

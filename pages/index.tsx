@@ -53,7 +53,7 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className='px-5 md:px-10 mt-32 flex justify-center'>
-        <div className='mb-16 border-b pb-8 border-slate-300 max-w-5xl md:grid-cols-2 grid grid-cols-1 gap-6'>
+        <div className='mb-16 pb-8  max-w-5xl md:grid-cols-2 grid grid-cols-1 gap-6'>
           
           <div className='mt-4 mb-10 md:mb-0'>
             <p className='text-primary text-sm mb-3 dark:!text-slate-200'><b>TGN</b> - a people a coming</p>

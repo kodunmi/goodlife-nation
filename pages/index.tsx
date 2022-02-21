@@ -5,6 +5,7 @@ import { RiArrowRightCircleLine } from 'react-icons/ri'
 import { Header, Messages, VMO } from '../components'
 import { AppLayout } from '../layouts'
 
+
 const Home: NextPage = () => {
   return (
     <AppLayout>

@@ -4,6 +4,7 @@ import { Footer, NavBar, socialIcons } from '../components'
 import { Dialog, Transition } from '@headlessui/react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RiCloseCircleLine } from 'react-icons/ri';
+import '../utils'
 
 interface AppLayoutProps {
   children: ReactNode

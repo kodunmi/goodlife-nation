@@ -4,6 +4,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { RiTwitterFill, RiFacebookFill, RiInstagramFill, RiYoutubeFill } from 'react-icons/ri'
 import { useDarkMode } from '../../hooks'
 import { NavLink } from '..'
+import { useRouter } from 'next/router'
 
 export const navigation = [
     { name: 'Home', href: '/', active: true },
@@ -24,6 +25,8 @@ export const NavBar = () => {
     const [colorTheme, setTheme] = useDarkMode();
 
   let   setTheme2 = setTheme as React.Dispatch<any>;
+
+  const router = useRouter()
 
     return (
 
@@ -55,10 +58,10 @@ export const NavBar = () => {
                         {/* Secondary Navbar items  */}
                         <div className="hidden md:flex items-center space-x-3 ">
                             {
-                                socialIcons.map(({ name, href, icon }, index) => <a key={`kwkw${index}`} href="" className="flex items-center py-4 px-2 text-white font-semibold hover:text-[#0d2a66] transition duration-300">{icon}</a>)
+                                socialIcons.map(({ name, href, icon }, index) => <a key={`kwkw${index}`} href={href} className="flex items-center py-4 px-2 text-white font-semibold hover:text-[#0d2a66] transition duration-300">{icon}</a>)
                             }
-                            {/* <a href="" className="py-2 px-3 font-medium text-white rounded-xl hover:bg-[#0d2a66] hover:text-white transition duration-300">Log In</a> */}
-                            <a href="" className="py-2 px-3 font-medium text-white bg-[#0d2a66] rounded-xl hover:bg-[#0d2a66] transition duration-300">Register</a>
+                            <div onClick={() => router.push('/login')}  className="py-2 px-3 cursor-pointer font-medium text-white rounded-xl hover:bg-[#0d2a66] hover:text-white transition duration-300">Log In</div>
+                            <div onClick={() => router.push('/register')}   className="py-2 px-3 cursor-pointer font-medium text-white bg-[#0d2a66] rounded-xl hover:bg-[#0d2a66] transition duration-300">Register</div>
                             {colorTheme === "light" ? (
                                 <svg
                                     onClick={() => setTheme2("light")}
@@ -145,19 +148,29 @@ export const NavBar = () => {
                         </div>
                         <div className='flex justify-around px-7 text-[#0d2a66]'>
                             {
-                                socialIcons.map(({ name, href, icon }, index) => <a key={`wwwk${index}`} href="" className="flex items-center py-4 px-2 text-[#0d2a66] dark:text-slate-200 font-semibold hover:text-[#0d2a66] transition duration-300">{icon}</a>)
+                                socialIcons.map(({ name, href, icon }, index) => <a key={`wwwk${index}`} href={href} className="flex items-center py-4 px-2 text-[#0d2a66] dark:text-slate-200 font-semibold hover:text-[#0d2a66] transition duration-300">{icon}</a>)
                             }
                         </div>
 
                         <div>
-                           <a
-                            href="#"
-                            className="block w-full px-5 py-3 text-center font-medium text-secondary dark:text-slate-200  dark:bg-slate-900 bg-gray-50 hover:bg-gray-100"
-                        >
-                            Register
+                        <div className='flex'>
+                                <div
+                                   onClick={()=> router.push('/login')}
+                                    className="block w-full px-5 py-3 text-center font-medium text-secondary dark:text-slate-200  dark:bg-slate-900 bg-gray-50 hover:bg-gray-100"
+                                >
+                                    Login
 
-                            
-                        </a> 
+
+                                </div>
+                                <div
+                                    onClick={()=> router.push('/register')}
+                                    className="block w-full px-5 py-3 text-center font-medium text-secondary dark:text-slate-200  dark:bg-slate-900 bg-gray-50 hover:bg-gray-100"
+                                >
+                                    Register
+
+
+                                </div>
+                            </div>
                         <div className='text-center mb-4 mt-4 flex justify-center'>
                             {colorTheme === "light" ? (
                                 <svg

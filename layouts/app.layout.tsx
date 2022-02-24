@@ -74,7 +74,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                         {/* share icon */}
                         <div className='flex justify-center items-center mr-4'>
                           {
-                            socialIcons.map(({ name, href, icon }, index) => <a key={`kwkw${index}`} href="" className="flex items-center py-4 px-2 text-primary dark:text-slate-200 font-semibold hover:text-blue-300 transition duration-300">{icon}</a>)
+                            socialIcons.map(({ name, href, icon }, index) => <a key={`kwkw${index}`} href={href} className="flex items-center py-4 px-2 text-primary dark:text-slate-200 font-semibold hover:text-blue-300 transition duration-300">{icon}</a>)
                           }
 
 
@@ -97,7 +97,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                         {/* share icon */}
                         <div className='flex justify-center items-center mr-4'>
                           {
-                            socialIcons.map(({ name, href, icon }, index) => <a key={`kwkw${index}`} href="" className="flex items-center py-4 px-2 text-primary dark:text-slate-200 font-semibold hover:text-blue-300 transition duration-300">{icon}</a>)
+                            socialIcons.map(({ name, href, icon }, index) => <a key={`kwkw${index}`} href={href} className="flex items-center py-4 px-2 text-primary dark:text-slate-200 font-semibold hover:text-blue-300 transition duration-300">{icon}</a>)
                           }
 
 

@@ -8,13 +8,12 @@ interface AppLayoutProps {
 
 export const AuthLayout = ({ children }: AppLayoutProps) => {
     return (
-        <div className='flex h-screen w-screen'>
+        <div className='flex h-screen w-screen bg-slate-900 text-slate-200'>
             <Head>
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Yellowtail&display=swap" rel="stylesheet"></link>
-
             </Head>
             <div className='w-full md:w-5/12 py-6 overflow-y-auto px-4'>
-                <img src="/logo.png" alt="" className='w-16 h-16' />
+                <img src="/logo.png" alt="" className='w-16 h-16 mb-6' />
                 {children}
             </div>
 

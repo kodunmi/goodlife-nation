@@ -37,7 +37,7 @@ export const NavBar = () => {
                         <div className="flex space-x-7">
                             <div>
                                 {/* Website Logo  */}
-                                <a href="#" className="flex items-center py-4 px-2">
+                                <a href="/" className="flex items-center py-4 px-2">
                                     <img src="/logo.png" alt="Logo" className="h-12 w-12 mr-2" />
                                 </a>
                             </div>

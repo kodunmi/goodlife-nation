@@ -15,8 +15,10 @@ export const AuthLayout = ({ children }: AppLayoutProps) => {
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Yellowtail&display=swap" rel="stylesheet"></link>
             </Head>
             <div className='w-full md:w-5/12 py-6 overflow-y-auto px-4'>
+            <div className='max-w-md m-auto'>
                 <img onClick={()=>router.push('/')} src="/logo.png" alt="" className='w-12 h-12 mb-6' />
                 {children}
+                </div>
             </div>
 
             <div className='text-white hidden md:flex flex-col justify-center items-center w-7/12 bg-[url("/images/rpn/4.jpg")] bg-blend-overlay bg-primary bg-cover bg-no-repeat'>

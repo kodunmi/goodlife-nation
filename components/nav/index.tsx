@@ -2,9 +2,10 @@ import React, { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { RiTwitterFill, RiFacebookFill, RiInstagramFill, RiYoutubeFill } from 'react-icons/ri'
-import { useDarkMode } from '../../hooks'
+import { useAuth, useDarkMode, useInitials } from '../../hooks'
 import { NavLink } from '..'
 import { useRouter } from 'next/router'
+import {initials} from '../../utils'
 
 export const navigation = [
     { name: 'Home', href: '/', active: true },
@@ -24,9 +25,11 @@ export const NavBar = () => {
 
     const [colorTheme, setTheme] = useDarkMode();
 
-  let   setTheme2 = setTheme as React.Dispatch<any>;
+    let setTheme2 = setTheme as React.Dispatch<any>;
 
-  const router = useRouter()
+    const router = useRouter()
+
+    const { user: { user } } = useAuth()
 
     return (
 
@@ -42,14 +45,14 @@ export const NavBar = () => {
                                 </a>
                             </div>
                             {/* Primary Navbar items */}
-                            <div className="hidden md:flex items-center space-x-1">
+                            <div className="hidden lg:flex items-center space-x-1">
                                 {
                                     navigation.map(({ name, href, active }, index) =>
 
-                                    <NavLink href={href}>
-                                         <a key={`snsn-${index}`} className={`px-2 text-white font-semibold hover:text-primary transition duration-300`}>{name}</a>
-                                    </NavLink>
-                                    
+                                        <NavLink href={href}>
+                                            <a key={`snsn-${index}`} className={`px-2 text-white font-semibold hover:text-primary transition duration-300`}>{name}</a>
+                                        </NavLink>
+
                                     )
 
                                 }
@@ -60,8 +63,19 @@ export const NavBar = () => {
                             {
                                 socialIcons.map(({ name, href, icon }, index) => <a key={`kwkw${index}`} href={href} className="flex items-center py-4 px-2 text-white font-semibold hover:text-[#0d2a66] transition duration-300">{icon}</a>)
                             }
-                            <div onClick={() => router.push('/login')}  className="py-2 px-3 cursor-pointer font-medium text-white rounded-xl hover:bg-[#0d2a66] hover:text-white transition duration-300">Log In</div>
-                            <div onClick={() => router.push('/register')}   className="py-2 px-3 cursor-pointer font-medium text-white bg-[#0d2a66] rounded-xl hover:bg-[#0d2a66] transition duration-300">Register</div>
+                            {
+                                user ? (
+                                    <div onClick={() => router.push('/dashboard')} className='bg-purple-500 rounded-full h-10 w-10 cursor-pointer flex justify-center items-center text-white'>
+                                        <p >{initials(user.fullName)}</p>
+                                    </div>
+                                ) : (
+                                    <Fragment>
+                                        <div onClick={() => router.push('/login')} className="py-2 px-3 cursor-pointer font-medium text-white rounded-xl hover:bg-[#0d2a66] hover:text-white transition duration-300">Log In</div>
+                                        <div onClick={() => router.push('/register')} className="py-2 px-3 cursor-pointer font-medium text-white bg-[#0d2a66] rounded-xl hover:bg-[#0d2a66] transition duration-300">Register</div>
+                                    </Fragment>
+                                )
+                            }
+
                             {colorTheme === "light" ? (
                                 <svg
                                     onClick={() => setTheme2("light")}
@@ -97,7 +111,7 @@ export const NavBar = () => {
                             )}
                         </div>
                         {/* Mobile menu button  */}
-                        <div className="md:hidden flex items-center">
+                        <div className="lg:hidden flex items-center">
                             <Popover.Button className=" rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-500 hover:bg-[#0d2a66] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0d2a66]">
                                 <span className="sr-only">Open main menu</span>
                                 <MenuIcon className="h-6 w-6" aria-hidden="true" />
@@ -117,7 +131,7 @@ export const NavBar = () => {
             >
                 <Popover.Panel
                     focus
-                    className="fixed z-40 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+                    className="fixed z-40 top-0 inset-x-0 p-2 transition transform origin-top-right lg:hidden"
                 >
                     <div className="rounded-lg shadow-md bg-white dark:bg-slate-900 ring-1 ring-black ring-opacity-5 overflow-hidden">
                         <div className="px-5 pt-4 flex items-center justify-between">
@@ -153,65 +167,75 @@ export const NavBar = () => {
                         </div>
 
                         <div>
-                        <div className='flex'>
-                                <div
-                                   onClick={()=> router.push('/login')}
-                                    className="block w-full px-5 py-3 text-center font-medium text-secondary dark:text-slate-200  dark:bg-slate-900 bg-gray-50 hover:bg-gray-100"
-                                >
-                                    Login
+                            {
+                                user ? (
+                                    <p className='text-center' >{user.fullName}</p>
+                                ) : (
+
+                                    <div className='flex'>
+
+                                        <div
+                                            onClick={() => router.push('/login')}
+                                            className="block w-full px-5 py-3 text-center font-medium text-secondary dark:text-slate-200  dark:bg-slate-900 bg-gray-50 hover:bg-gray-100"
+                                        >
+                                            Login
 
 
-                                </div>
-                                <div
-                                    onClick={()=> router.push('/register')}
-                                    className="block w-full px-5 py-3 text-center font-medium text-secondary dark:text-slate-200  dark:bg-slate-900 bg-gray-50 hover:bg-gray-100"
-                                >
-                                    Register
+                                        </div>
+                                        <div
+                                            onClick={() => router.push('/register')}
+                                            className="block w-full px-5 py-3 text-center font-medium text-secondary dark:text-slate-200  dark:bg-slate-900 bg-gray-50 hover:bg-gray-100"
+                                        >
+                                            Register
 
 
-                                </div>
+                                        </div>
+                                    </div>
+                                )
+
+                            }
+
+                            <div className='text-center mb-4 mt-4 flex justify-center'>
+                                {colorTheme === "light" ? (
+                                    <svg
+                                        onClick={() => setTheme2("light")}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6 "
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                                        />
+                                    </svg>
+                                ) : (
+                                    <svg
+                                        onClick={() => setTheme2("dark")}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6 "
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                                        />
+                                    </svg>
+                                )}
                             </div>
-                        <div className='text-center mb-4 mt-4 flex justify-center'>
-                            {colorTheme === "light" ? (
-                                <svg
-                                    onClick={() => setTheme2("light")}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6 "
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                                    />
-                                </svg>
-                            ) : (
-                                <svg
-                                    onClick={() => setTheme2("dark")}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6 "
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                                    />
-                                </svg>
-                            )}
-                        </div>
-                        
-                        </div>
-                        
-                        
 
-                        
+                        </div>
+
+
+
+
 
                     </div>
                 </Popover.Panel>

@@ -22,6 +22,7 @@ export const WithAuth = (WrappedComponent: any) => {
        if(user && user.token){
          const token = jwt(user.token) as any;
          if(token.exp < Date.now()/1000){
+           localStorage.clear()
            Router.replace("/login");
            return null;
          }

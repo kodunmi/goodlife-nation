@@ -26,6 +26,7 @@ export interface ITen {
 }
 
 export interface IUser {
+    id: string;
     email: string;
     password: string;
     fullName: string;
@@ -66,3 +67,17 @@ export interface IGuestUser {
     location: Array<string>;
     service: Array<string>;
 };
+
+export interface IConvert {
+    createDateTime?: string
+    dob?: string
+    firstName?: string
+    gender: "female" | "male"
+    id: string
+    lastChangedDateTime: string
+    lastName: string
+    location: string
+    occupation: string
+    phone: string
+    user: IUser
+}

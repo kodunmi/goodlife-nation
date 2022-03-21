@@ -13,7 +13,8 @@ export const WithAuth = (WrappedComponent: any) => {
         const Router = useRouter();
   
         // If there is no access token we redirect to "/" page.
-        if (!user) {
+        if (!user.user || !user.token) {
+          localStorage.clear()
           Router.replace("/login");
           return null;
         }

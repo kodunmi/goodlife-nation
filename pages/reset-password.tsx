@@ -2,11 +2,13 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
-import ReactPinField from 'react-pin-field'
+// import ReactPinField from 'react-pin-field'
 import { BeatLoader } from 'react-spinners'
 import { toast } from 'react-toastify'
 import { AuthLayout } from '../layouts'
 import { ResetPasswordRequest, useResetPasswordMutation } from '../services'
+import dynamic from "next/dynamic";
+const ReactPinField = dynamic(() => import("react-pin-field"), { ssr: false });
 
 const ResetPasswordPage = () => {
 

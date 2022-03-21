@@ -3,11 +3,13 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { Router, useRouter } from 'next/router'
 import React from 'react'
-import ReactPinField from 'react-pin-field'
+// import ReactPinField from 'react-pin-field'
 import { BeatLoader } from 'react-spinners'
 import { toast } from 'react-toastify'
 import { AuthLayout } from '../layouts'
 import { useResendOtpMutation, useVerifyPhoneMutation, VerifyPhoneRequest } from '../services'
+import dynamic from "next/dynamic";
+const ReactPinField = dynamic(() => import("react-pin-field"), { ssr: false });
 
 const VerifyPhonePage = () => {
 

@@ -4,13 +4,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { Fragment, useState } from 'react'
-import { RiFacebookLine, RiGoogleLine } from 'react-icons/ri'
+import { RiEyeLine, RiEyeOffLine, RiFacebookLine, RiGoogleLine } from 'react-icons/ri'
 import NumberFormat from 'react-number-format'
 import { BeatLoader } from 'react-spinners'
 import { toast } from 'react-toastify'
 import { useAppDispatch } from '../hooks'
 import { AppLayout, AuthLayout } from '../layouts'
-import { RegisterRequest, useRegisterMutation } from '../services'
+import { IRoyalChapter, ITen } from '../lib'
+import { RegisterRequest, useGetAllRCQuery, useRegisterMutation } from '../services'
 
 
 export const rcList = [
@@ -38,8 +39,8 @@ export const rcList = [
 
 function Register() {
 
-  const [rc, setRc] = useState<{ id: string, name: string, tens: Array<string> }>()
-  const [ten, setTen] = useState<string>()
+  const [rc, setRc] = useState<IRoyalChapter>()
+  const [ten, setTen] = useState<ITen>()
   const [formState, setFormState] = React.useState<RegisterRequest>({
     phone: '',
     password: '',
@@ -48,11 +49,20 @@ function Register() {
     chapterId: '',
     fullName: '',
   })
+  const [showPassword, setShowPassword] = useState(false);
+
 
   // hooks
   const { push } = useRouter();
   const dispatch = useAppDispatch()
   const [register, {isLoading}] = useRegisterMutation()
+
+  const {data, isLoading:loadingRc, isError} = useGetAllRCQuery('',{
+    refetchOnMountOrArgChange: true
+  })
+
+  console.log(data?.data);
+  
 
 
 
@@ -64,7 +74,7 @@ function Register() {
     })
   }
 
-  const handleRc = (value: { id: string, name: string, tens: Array<string> }) => {
+  const handleRc = (value: IRoyalChapter) => {
     setRc(value)
 
     setFormState({
@@ -73,12 +83,12 @@ function Register() {
     })
   }
 
-  const handleTen = (value: string) => {
+  const handleTen = (value: ITen) => {
     setTen(value)
 
     setFormState({
       ...formState,
-      tenId: value,
+      tenId: value.id,
     })
   }
 
@@ -112,15 +122,8 @@ function Register() {
       }else{
         toast.error(err.data ? err.data.message : "We could not process your request")
       }
-    }
-
-
-
-    console.log(formState);
-    
+    }    
   }
-
-  console.log(rc);
 
   return (
     <AuthLayout>
@@ -168,9 +171,23 @@ function Register() {
           />
             {/* <input required id='phone' type="text" name='phone' onChange={handleChange} className="ring-0 w-full border border-slate-200 bg-slate-900 shadow-md form-input px-4 py-3 rounded-md" placeholder='enter your phone number' /> */}
           </div>
-          <div className='w-full mb-4'>
+          {/* <div className='w-full mb-4'>
             <label htmlFor="password">Password</label>
             <input required id='password' type="password" name='password' onChange={handleChange} className="ring-0 w-full border border-slate-200 bg-slate-900 shadow-md form-input px-4 py-3 rounded-md" placeholder='enter your password' />
+          </div> */}
+           <div className="relative w-full mb-4">
+            <div className="absolute inset-y-0 right-4 flex items-center px-2">
+              {
+                showPassword ? (
+                  <RiEyeOffLine className='text-primary' onClick={() => setShowPassword(false)}  />
+                ) : (
+                  <RiEyeLine className='text-primary' onClick={() => setShowPassword(true)} />
+                )
+              }
+              {/* <input className="hidden js-password-toggle" id="toggle" type="checkbox" />
+              <label className="bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" htmlFor="toggle">show</label> */}
+            </div>
+            <input className="ring-0 w-full border border-slate-200 bg-slate-900  shadow-md form-input px-4 py-3 rounded-md" id="password" type={showPassword ? 'text' : 'password'} autoComplete="off" />
           </div>
           <div className='w-full mb-4'>
             <label >Royal Chapter</label>
@@ -192,7 +209,7 @@ function Register() {
                   leaveTo="opacity-0"
                 >
                   <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base bg-slate-900 border border-slate-200   rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                    {rcList.map((rc, personIdx) => (
+                    {!isError && !isLoading && data && data.data.map((rc, personIdx) => (
                       <Listbox.Option
                         key={personIdx}
                         className={({ active }) =>
@@ -228,7 +245,7 @@ function Register() {
             <Listbox value={ten} onChange={handleTen}>
               <div className="relative">
                 <Listbox.Button className="relative h-12 w-full py-2 pl-3 pr-10 text-left bg-slate-900 border-slate-200 border rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
-                  <span className="block truncate">{ten ?? 'Select TEN'}</span>
+                  <span className="block truncate">{ten?.name ?? 'Select TEN'}</span>
                   <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                     <SelectorIcon
                       className="w-5 h-5 text-gray-400"
@@ -258,7 +275,7 @@ function Register() {
                               className={`block text-slate-200 truncate ${selected ? 'font-medium' : 'font-normal'
                                 }`}
                             >
-                              {ten}
+                              {ten.name}
                             </span>
                             {selected ? (
                               <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">

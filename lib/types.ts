@@ -16,13 +16,17 @@ export interface IRoyalChapter {
     phone: string;
     email: string;
     // users: IUser[];
-    // tens: ITen[];
+    tens: ITen[];
 }
 
 export interface ITen {
     name: string;
     chapter: IRoyalChapter;
     id: string;
+    leader: IUser | null;
+    vp: IUser | null;
+    vip: IUser | null;
+    users: IUser[];
 }
 
 export interface IUser {
@@ -47,6 +51,10 @@ export interface IUser {
     lastLoginIp: string;
     chapter: IRoyalChapter;
     ten: ITen;
+    isBishop: boolean;
+    isTenLeader: boolean;
+    isLeader: boolean;
+    converts: IConvert[] |null;
 }
 
 export interface IPreferences {
@@ -80,4 +88,19 @@ export interface IConvert {
     occupation: string
     phone: string
     user: IUser
+}
+
+export interface ILink {
+    first: string
+    last: string
+    next: string
+    previous: string
+}
+
+export interface IMeta {
+    currentPage: number
+    itemCount: number
+    itemsPerPage: number
+    totalItems: number
+    totalPages: number
 }

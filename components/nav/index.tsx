@@ -66,7 +66,7 @@ export const NavBar = () => {
                             {
                                 user ? (
                                     <div onClick={() => router.push('/dashboard')} className='bg-purple-500 rounded-full h-10 w-10 cursor-pointer flex justify-center items-center text-white'>
-                                        <p >{initials(user.fullName)}</p>
+                                        <p >{user.fullName && initials(user.fullName)}</p>
                                     </div>
                                 ) : (
                                     <Fragment>

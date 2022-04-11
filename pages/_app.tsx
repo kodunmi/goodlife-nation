@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import "swiper/css";
 import 'plyr-react/dist/plyr.css'
+import 'react-tailwind-table/dist/index.css'
 import type { AppProps } from 'next/app'
 import { store } from '../redux';
 import { Provider } from 'react-redux';

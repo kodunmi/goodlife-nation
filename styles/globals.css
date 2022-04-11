@@ -55,3 +55,26 @@
       transform: scale(1.05) translateY(5%);
     }
   }
+
+  /* list */
+  .list {
+    list-style: none;
+    width: 600px;
+    max-width: 90%;
+}
+
+.item {
+    display: block;
+    clear: both;
+    counter-increment: list;
+    padding-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.375;
+    position: relative;
+}
+
+.headline {
+    padding: 0rem 0 0 0;
+    margin: 0 0 1rem 0;
+    font: normal 1.5rem "Space Mono", Consolas, Menlo, Monaco, "Courier New", monospace;
+}

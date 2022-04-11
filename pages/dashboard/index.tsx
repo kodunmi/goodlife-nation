@@ -12,6 +12,7 @@ import { useTypedSelector } from '../../hooks'
 import { selectCurrentUser } from '../../redux'
 import { WithAuth } from '../../HOC'
 import NumberFormat from 'react-number-format'
+import { useRouter } from 'next/router'
 
 
 enum TabEnum {
@@ -255,7 +256,7 @@ const Profile = () => {
 
 const Destiny = ({ openModal }: { openModal: () => void }) => {
 
-  const {data, isLoading, isFetching, isError,refetch } = useGetConvertsQuery('',{
+  const { data, isLoading, isFetching, isError, refetch } = useGetConvertsQuery('', {
     refetchOnMountOrArgChange: true
   })
 
@@ -317,20 +318,20 @@ const Destiny = ({ openModal }: { openModal: () => void }) => {
                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   {
                     isError ? <p>Error</p> : isLoading ? <p>Loading</p> :
-                    data?.data.map((convert, idx) => (
-                      <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.firstName}</td>
-                        <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">{convert.lastName}</td>
-                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.gender}</td>
-                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.location}</td>
-                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.occupation}</td>
-                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.phone}</td>
-                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.dob}</td>
-                        <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                          <a href="#" className="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        </td>
-                      </tr>
-                    ))
+                      data?.data.map((convert, idx) => (
+                        <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.firstName}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">{convert.lastName}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.gender}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.location}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.occupation}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.phone}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{convert.dob}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                            <a href="#" className="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                          </td>
+                        </tr>
+                      ))
                   }
 
 
@@ -378,9 +379,11 @@ const UserDashboardPage = () => {
   const { user } = useTypedSelector(selectCurrentUser)
   let [isOpen, setIsOpen] = useState(false)
 
-  const {data, isLoading:loading, isFetching, isError,refetch } = useGetConvertsQuery('',{
+  const { data, isLoading: loading, isFetching, isError, refetch } = useGetConvertsQuery('', {
     refetchOnMountOrArgChange: true
   })
+
+  const router = useRouter()
 
 
   function closeModal() {
@@ -414,7 +417,7 @@ const UserDashboardPage = () => {
       refetch()
 
       setIsOpen(false)
-      
+
 
     } catch (err: any) {
       if (err.data && Array.isArray(err.data.message)) {
@@ -433,7 +436,9 @@ const UserDashboardPage = () => {
     })
   }
 
-  
+
+
+
   const tabs: {
     name: string
     icon: JSX.Element
@@ -597,20 +602,42 @@ const UserDashboardPage = () => {
       </Transition>
       <div className='bg-primary min-h-[300px] w-full pt-28'>
         <div className='max-w-6xl m-auto flex justify-between items-center px-4'>
-          <div className='flex items-center text-white'>
-            <RiUserLine size={30} />
-            <h4 className='mr-8 sm:text-2xl text-lg '>
-              {/* get first name from fullname */}
-              {user?.fullName.split(" ")[1]}
-            </h4>
+          <div>
+            <div className='flex items-center text-white'>
+              <RiUserLine size={30} />
+              <h4 className='mr-8 sm:text-2xl text-lg '>
+                {/* get first name from fullname */}
+                {user?.fullName.split(" ")[1]}
+              </h4>
+            </div>
+            <div className='flex mt-2'>
+              {user?.isBishop && <span className='bg-sky-300 rounded-xl px-2 text-sm text-black'>Bishop</span>}
+              {user?.isLeader && <span className='bg-pink-400 rounded-xl px-2 ml-3 text-sm text-black'>Leader</span>}
+              {user?.isTenLeader && <span className='bg-sky-300 rounded-xl px-2 ml-3 text-sm text-black'>TEN Leader</span>}
+            </div>
           </div>
 
-          <div className='whitespace-nowrap cursor-pointer rounded-lg py-1 px-4 text-white inline-flex justify-center items-center bg-purple-500 text-xs sm:text-lg'>
-            Manage RC
-            <RiPulseFill className='ml-3' />
-          </div>
+
+          {
+            user?.isBishop && (
+              <div onClick={() => router.push('/dashboard-bishop')} className='whitespace-nowrap cursor-pointer rounded-lg py-1 px-4 text-white inline-flex justify-center items-center bg-purple-500 text-xs sm:text-lg'>
+                Manage RC
+                <RiPulseFill className='ml-3' />
+              </div>
+            )
+          }
+          {
+            user?.isTenLeader && (
+              <div onClick={() => router.push('/dashboard-ten-leader')} className='whitespace-nowrap cursor-pointer rounded-lg py-1 px-4 text-white inline-flex justify-center items-center bg-purple-500 text-xs sm:text-lg'>
+                Manage TEN
+                <RiPulseFill className='ml-3' />
+              </div>
+            )
+          }
+
 
         </div>
+
 
       </div>
       <div className='bg-white dark:bg-slate-900 shadow-2xl mb-36 rounded-xl max-w-6xl -mt-[100px] m-auto  top-[200px] sm:p-8 p-2'>

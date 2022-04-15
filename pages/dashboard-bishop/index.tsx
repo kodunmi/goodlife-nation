@@ -1,3 +1,4 @@
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
 import React, { Fragment, ReactNode } from 'react'
 import { RiAddCircleFill, RiGroupLine, RiPulseLine, RiTeamLine } from 'react-icons/ri'
 import { BeatLoader } from 'react-spinners'
@@ -32,7 +33,7 @@ const BishopDashboard = () => {
                 <img src="/images/general/illustration.png" className='w-28 sm:block hidden' alt="" />
             </div>
             {
-                isError ? <p>{error.data.message}</p> : isLoading ? <BeatLoader /> : (
+                isError ? <p>error processing</p> : isLoading ? <BeatLoader /> : (
                     <div className='grid grid-cols-3 mt-6 gap-2 lg:gap-8'>
                         <div className='flex cursor-pointer hover:bg-primary hover:text-white text-primary justify-between items-center py-3 px-4 border-primary border-2 col-span-3 md:col-auto rounded-lg'>
                             <RiTeamLine className='mr-3 text-3xl  shrink-0' />

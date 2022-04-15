@@ -144,7 +144,7 @@ export const ManagementLayout = ({ children, type }: AppLayoutProps) => {
 
     const [getUsers] = useLazyGetUsersQuery()
 
-    const loadPageOptions = async (q: any, prevOptions: any, { page }: { page: any }) => {
+    const loadPageOptions = async (search:any, page:any) => {
         const { data, isError } = await getUsers({
             chapterId: user.user?.chapter.id as string,
             page: page,
@@ -378,7 +378,7 @@ export const ManagementLayout = ({ children, type }: AppLayoutProps) => {
                                             id='leader'
                                             additional={defaultAdditional}
                                             loadOptions={loadPageOptions}
-                                            onChange={(e) => setFormState({ ...formState, leaderId: e.value })}
+                                            onChange={(e) => setFormState({ ...formState, leaderId: e!.value })}
                                         />
 
                                     </div>
@@ -389,7 +389,7 @@ export const ManagementLayout = ({ children, type }: AppLayoutProps) => {
                                                 id='vice'
                                                 additional={defaultAdditional}
                                                 loadOptions={loadPageOptions}
-                                                onChange={(e) => setFormState({ ...formState, viceId: e.value })}
+                                                onChange={(e) => setFormState({ ...formState, viceId: e!.value })}
                                             />
 
                                         </div>
@@ -399,7 +399,7 @@ export const ManagementLayout = ({ children, type }: AppLayoutProps) => {
                                                 id='vip'
                                                 additional={defaultAdditional}
                                                 loadOptions={loadPageOptions}
-                                                onChange={(e) => setFormState({ ...formState, vipId: e.value })}
+                                                onChange={(e) => setFormState({ ...formState, vipId: e!.value })}
                                             />
                                         </div>
                                     </div>

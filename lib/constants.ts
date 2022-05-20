@@ -7,4 +7,4 @@ export default function isDev(): boolean
     return development;
 }
 
-export const BaseUrl = isDev() ? "http://127.0.0.1:3030" : "https://goodlife-nation-api-2.herokuapp.com"
+export const BaseUrl = isDev() ? "http://127.0.0.1:8080" : "http://thegoodlifenation-env-2.eba-cq2qthzm.us-east-1.elasticbeanstalk.com"

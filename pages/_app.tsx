@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
+import { AnimatePresence } from 'framer-motion';
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -19,7 +20,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <ToastContainer />
       <PersistGate loading={null} persistor={persistor}>
+      <AnimatePresence exitBeforeEnter>
         <Component {...pageProps} />
+      </AnimatePresence>
       </PersistGate>
     </Provider>
   )

@@ -5,9 +5,15 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { FormEvent, Fragment, useState } from 'react'
 import { RiArrowRightCircleLine, RiPlayFill, RiPlayLine } from 'react-icons/ri'
+import { BeatLoader } from 'react-spinners'
 import { AppLayout } from '../../layouts'
+import { useGetAllMessageQuery } from '../../services/message'
 
-const cats = [
+const cats: {
+    id: number,
+    title: string,
+    tag:  'ALL' | 'NCR' | '7DOA' | 'PEM' | 'TGP'
+}[] = [
     {
         id: 5,
         title: 'All ',
@@ -92,10 +98,23 @@ const messages = [
 const MessagesPage = () => {
     const [cat, setCat] = useState(cats[0])
     const [search, setSearch] = useState('')
+    const [page, setPage] = useState(1)
 
     const handleSearch = (e:FormEvent<HTMLInputElement>) => {
         setSearch(e.currentTarget.value)
     }
+
+    const {data, isLoading, isFetching, isError} = useGetAllMessageQuery(
+        {
+        page: page,
+        search: search,
+        tag: cat.tag
+    },{
+        refetchOnMountOrArgChange: true
+    })
+
+    console.log(data);
+    
 
     const router = useRouter()
 
@@ -180,13 +199,18 @@ const MessagesPage = () => {
             <div className='mt-10 mb-10 d:px-9 sm:px-5 px-4 max-w-5xl mx-auto align-middle'>
                 <div className='grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
                     {
-                        messages.filter((message) => {
-                            if (cat.tag.toLocaleLowerCase() === 'all') {
-                                return message
-                            }
+                        isError ? <p>Error loading message</p> : isFetching ? <BeatLoader color='white'/> : 
+                        data?.data.items
+                        
+                        // .filter((message) => {
+                        //     if (cat.tag.toLocaleLowerCase() === 'all') {
+                        //         return message
+                        //     }
                                
-                           return message.type.toLocaleLowerCase() == cat.tag.toLocaleLowerCase()
-                        }).filter((message) => {
+                        //    return message.type.toLocaleLowerCase() == cat.tag.toLocaleLowerCase()
+                        // }).
+                        
+                        .filter((message) => {
                             if (search.length === 0) {
                                 return message
                             }
@@ -195,8 +219,8 @@ const MessagesPage = () => {
 
                         .map((message, idx) => (
                             <div className='bg-white p-4 dark:bg-slate-900 shadow-2xl dark:border border-primary rounded-lg  flex'>
-                                <div className={`w-4/12 min-h-[120px] bg-center relative bg-cover rounded-lg p-3 mr-3`} style={{ backgroundImage: message.image }}>
-                                    <span className='bg-pink-400 py-[5px] px-2 rounded-lg text-[10px] text-white' >{message.type}</span>
+                                <div className={`w-4/12 min-h-[120px] bg-center relative bg-cover rounded-lg p-3 mr-3`} style={{ backgroundImage: message.imageUrl }}>
+                                    <span className='bg-pink-400 py-[5px] px-2 rounded-lg text-[10px] text-white' >{message.tag}</span>
                                     <div className='absolute -right-5 top-2/4'>
                                         <div className='p-2 cursor-pointer hover:bg-secondary transition-all duration-300 rounded-full bg-primary -translate-y-2/4'>
                                             <RiPlayLine color='white' size={30} />
@@ -224,6 +248,36 @@ const MessagesPage = () => {
 
                 </div>
             </div>
+            <nav aria-label="Page navigation">
+                <ul className="inline-flex space-x-2 mt-8 w-full justify-center">
+
+                  {
+                   data && data.data.meta.currentPage !== 1 &&
+                    (
+                      <li><button onClick={()  => setPage((prev) => prev - 1 )} className="flex items-center justify-center w-10 h-10 text-primary transition-colors duration-150 rounded-full focus:shadow-outline hover:bg-blue-100">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path></svg></button>
+                      </li>
+                    )
+                  }
+
+                  {
+                    Array.from(Array(data?.data.meta.totalPages), (_, i) => i + 1).map(el =>
+                      <li><button onClick={() => setPage(el)} className={`w-10 h-10  transition-colors duration-150 rounded-full focus:shadow-outline hover:bg-indigo-100 ${el === data?.data.meta.currentPage ? "bg-indigo-600 text-white" : "text-indigo-600"}`}>{el}</button></li>
+                    )
+
+                  }
+
+                  {
+                    data && data.data.meta.currentPage < data.data.meta.totalPages &&
+                    (
+                      <li><button onClick={()  => setPage((prev) => prev + 1 )} className="flex items-center justify-center w-10 h-10 text-indigo-600 transition-colors duration-150 bg-white rounded-full focus:shadow-outline hover:bg-indigo-100">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path></svg></button>
+                      </li>
+                    )
+                  }
+
+                </ul>
+              </nav>
         </AppLayout>
     )
 }

@@ -11,13 +11,13 @@ export const Header = () => {
                     <span className="block font-['Yellowtail'] text-white ">to your rest</span>
                 </h1>
                 <div className='flex w-40 flex-col'>
-                    <div className="p-2 inline-block text-xl text-white mt-6 mb-3 bg-blue-900 bg-opacity-50 rounded-xl">
+                    <div className="cursor-pointer p-2 inline-block text-xl text-white mt-6 mb-3 bg-blue-900 bg-opacity-50 rounded-xl">
                         Prayer Request
                     </div>
-                    <div className=" p-2 inline-block text-xl text-white mb-3 bg-blue-900 bg-opacity-50 rounded-xl">
+                    <div className="cursor-pointer p-2 inline-block text-xl text-white mb-3 bg-blue-900 bg-opacity-50 rounded-xl">
                         Truth In Reality
                     </div>
-                    <div className=" p-2 inline-block text-xl text-white mb-3 bg-blue-900 bg-opacity-50 rounded-xl">
+                    <div className="cursor-pointer p-2 inline-block text-xl text-white mb-3 bg-blue-900 bg-opacity-50 rounded-xl">
                         Got Questions
                     </div>
                 </div>

@@ -5,13 +5,15 @@ import { RiTwitterFill, RiFacebookFill, RiInstagramFill, RiYoutubeFill } from 'r
 import { useAuth, useDarkMode, useInitials } from '../../hooks'
 import { NavLink } from '..'
 import { useRouter } from 'next/router'
-import {initials} from '../../utils'
+import { initials } from '../../utils'
 
 export const navigation = [
     { name: 'Home', href: '/', active: true },
     { name: 'Services', href: '/services' },
     { name: 'About Us', href: '/about-us' },
     { name: 'Contact Us', href: '/contact-us' },
+    { name: 'Messages', href: '/message' },
+    { name: 'Chapters', href: '/royal-chapters' },
 ]
 
 export const socialIcons = [

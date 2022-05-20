@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { AppLayout } from '../../layouts'
 import Plyr, { APITypes } from "plyr-react";
 import moment from 'moment';
-import { RiPlayLine } from 'react-icons/ri';
+import { RiPlayLine, RiRadio2Line, RiTv2Line } from 'react-icons/ri';
 import { useRouter } from 'next/router';
 
 const videoId = "BWOIuNK6yRo";
@@ -74,6 +74,16 @@ const MessagePage = () => {
         {plyrVideo}
       </div>
       <div className='p-10'>
+        <div className='flex items-center mb-4'>
+          <button className='border rounded-md flex items-center px-3 py-1 mr-2'>
+            <RiRadio2Line className='mr-2'/>
+            Download
+          </button>
+          <button className='border rounded-md flex items-center px-3 py-1'> 
+            <RiTv2Line className='mr-2'/>
+            Download
+          </button>
+        </div>
         <p>{message.title} - {message.type}</p>
         <p className='text-sm text-gray-400 mb-4'>{moment(message.date).format('Do MMM YY')}</p>
         <p className='mb-4'>{message.description}</p>

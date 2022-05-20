@@ -5,6 +5,8 @@ export interface IBaseResponse<T> {
 }
 
 export interface IRoyalChapter {
+    lat: string | number | boolean | readonly string[] | readonly number[] | readonly boolean[] | null | undefined;
+    lng: string | number | boolean | readonly string[] | readonly number[] | readonly boolean[] | null | undefined;
     id: string;
     name: string;
     description: string;
@@ -103,4 +105,17 @@ export interface IMeta {
     itemsPerPage: number
     totalItems: number
     totalPages: number
+}
+
+export interface IMessage {
+    id: string
+    title: string
+    createDateTime: string
+    lastChangedDateTime:string
+    description: string
+    imageUrl: string
+    videoUrl: string
+    date: Date
+    tag: 'NCR'|'7DOA'|'TGP'|'PEM'
+
 }

@@ -43,58 +43,6 @@ const cats: {
     
 ]
 
-const messages = [
-    {
-        id: 1,
-        title: 'PRAYER AND EMPOWERMENT MEETING WITH REVEREND P.N UTOMI',
-        date: '2021-12-23',
-        type: 'PEM',
-        image: '/images/1.jpg',
-    },
-    {
-        id: 2,
-        title: '8 Benefits Of Spiritual Growth with REV P.N Utomi',
-        date: '2022-08-08',
-        type: 'NCR',
-        image: '/images/1.jpg',
-    },
-    {
-        id: 3,
-        title: 'UNDERSTANDING THE TIMES WITH REVEREND P.N UTOMI',
-        date: '2020-01-01',
-        type: 'TGP',
-        image: '/images/1.jpg',
-    },
-    {
-        id: 2,
-        title: '8 Benefits Of Spiritual Growth with REV P.N Utomi',
-        date: '2022-08-08',
-        type: 'NCR',
-        image: '/images/1.jpg',
-    },
-    {
-        id: 3,
-        title: 'UNDERSTANDING THE TIMES WITH REVEREND P.N UTOMI',
-        date: '2020-01-01',
-        type: 'TGP',
-        image: '/images/1.jpg',
-    },
-    {
-        id: 2,
-        title: '8 Benefits Of Spiritual Growth with REV P.N Utomi',
-        date: '2022-08-08',
-        type: 'NCR',
-        image: '/images/1.jpg',
-    },
-    {
-        id: 3,
-        title: 'UNDERSTANDING THE TIMES WITH REVEREND P.N UTOMI',
-        date: '2020-01-01',
-        type: 'TGP',
-        image: '/images/1.jpg',
-    },
-    
-]
 const MessagesPage = () => {
     const [cat, setCat] = useState(cats[0])
     const [search, setSearch] = useState('')
@@ -219,7 +167,7 @@ const MessagesPage = () => {
 
                         .map((message, idx) => (
                             <div className='bg-white p-4 dark:bg-slate-900 shadow-2xl dark:border border-primary rounded-lg  flex'>
-                                <div className={`w-4/12 min-h-[120px] bg-center relative bg-cover rounded-lg p-3 mr-3`} style={{ backgroundImage: message.imageUrl }}>
+                                <div className={`w-4/12 min-h-[120px] bg-center relative bg-cover rounded-lg p-3 mr-3 bg-[url("/images/bg/3.png")]`}>
                                     <span className='bg-pink-400 py-[5px] px-2 rounded-lg text-[10px] text-white' >{message.tag}</span>
                                     <div className='absolute -right-5 top-2/4'>
                                         <div className='p-2 cursor-pointer hover:bg-secondary transition-all duration-300 rounded-full bg-primary -translate-y-2/4'>

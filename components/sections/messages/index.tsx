@@ -1,38 +1,57 @@
 import { Transition } from '@headlessui/react';
+import { useRouter } from 'next/router';
 import React, { Fragment, useState } from 'react'
 import { RiLightbulbFlashLine } from 'react-icons/ri';
+import { BeatLoader } from 'react-spinners';
+import { useGetAllMessageQuery } from '../../../services/message';
 
 export const Messages = () => {
     const [openTab, setOpenTab] = useState(1);
+    const router = useRouter();
 
 
     const tabList = [
         {
             id: 1,
             title: 'All Messages',
-            icon: 'Prayer Request'
-        },
-        {
-            id: 1,
-            title: 'New Creation Reality',
-            content: 'Prayer Request'
-        },
-        {
-            id: 1,
-            title: 'Prayer And Empowerment',
-            content: 'Prayer Request'
+            icon: 'Prayer Request',
+            tag: 'ALL',
         },
         {
             id: 2,
-            title: 'The Goodlife Praise',
-            content: 'Truth In Reality'
+            title: 'New Creation Reality',
+            content: 'Prayer Request',
+            tag: 'NCR',
         },
         {
             id: 3,
+            title: 'Prayer And Empowerment',
+            content: 'Prayer Request',
+            tag: 'PEM',
+        },
+        {
+            id: 4,
+            title: 'The Goodlife Praise',
+            content: 'Truth In Reality',
+            tag: 'TGP',
+        },
+        {
+            id: 5,
             title: '7days of Accomplishment',
-            content: 'Got Questions'
+            content: 'Got Questions',
+            tag: '7DOA',
         }
     ];
+
+    const { data, isLoading, isFetching, isError } = useGetAllMessageQuery(
+        {
+            page: 1,
+            search: '',
+            tag: 'ALL'
+        }, {
+        refetchOnMountOrArgChange: true,
+        refetchOnReconnect: true,
+    })
     return (
 
         <div className='px-5 md:px-10'>
@@ -69,76 +88,84 @@ export const Messages = () => {
                     )}
                 </ul>
             </div>
+            <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 mt-10  mb-4 rounded mx-auto">
+                {
+
+                    isError ? <p>Error loading</p> : isLoading ? <BeatLoader /> :
+                        data?.data.items.map((message, index) => {
+                            if (tabList[openTab - 1].tag === message.tag) {
+                                return (
+
+                                    <Transition
+                                        show={tabList[openTab - 1].tag === message.tag}
+                                        as={Fragment}
+                                        enter="transform transition duration-[400ms]"
+                                        enterFrom="opacity-0  scale-50"
+                                        enterTo="opacity-100 scale-100"
+                                        leave="transform duration-200 transition ease-in-out"
+                                        leaveFrom="opacity-100 rotate-0 scale-100 "
+                                        leaveTo="opacity-0 scale-95 "
+                                    >
+                                        <div className="w-full rounded-t-3xl overflow-hidden shadow-lg  relative flex flex-col">
+                                        <span className='bg-pink-400 py-[5px] px-2 top-3 left-3 rounded-lg text-[10px] text-white absolute' >{message.tag}</span>
+                                            <img className="w-full h-60" src="/images/bg/3.png" alt="Sunset in the mountains" />
+                                            <div className="px-6 py-4 h-full">
+                                                <div className="font-bold text-xl mb-2">{message.title}</div>
+                                                <p className="text-gray-700 text-base">
+                                                    {message.description}
+                                                </p>
+                                            </div>
+                                            <button onClick={() => router.push(`/message/${message.id}`)} className="w-full bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                                <span>View</span>
+                                            </button>
+                                        </div>
 
 
-            {
-                tabList.map((tab, index) => {
-                    return (
-                        <Transition
-                            show={openTab === index + 1}
-                            as={Fragment}
-                            enter="transform transition duration-[400ms]"
-                            enterFrom="opacity-0  scale-50"
-                            enterTo="opacity-100 scale-100"
-                            leave="transform duration-200 transition ease-in-out"
-                            leaveFrom="opacity-100 rotate-0 scale-100 "
-                            leaveTo="opacity-0 scale-95 "
-                        >
-                            <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 mt-10  mb-4 rounded mx-auto">
+                                    </Transition>
+                                )
+                            }else if(tabList[openTab - 1].tag === 'ALL'){
+                                return (
+                                    <Transition
+                                        show={true}
+                                        as={Fragment}
+                                        enter="transform transition duration-[400ms]"
+                                        enterFrom="opacity-0  scale-50"
+                                        enterTo="opacity-100 scale-100"
+                                        leave="transform duration-200 transition ease-in-out"
+                                        leaveFrom="opacity-100 rotate-0 scale-100 "
+                                        leaveTo="opacity-0 scale-95 "
+                                    >
+                                        <div className="w-full rounded-t-3xl overflow-hidden shadow-lg  relative flex flex-col">
+                                        <span className='bg-pink-400 py-[5px] px-2 top-3 left-3 rounded-lg text-[10px] text-white absolute' >{message.tag}</span>
+                                            <img className="w-full h-60" src="/images/bg/3.png" alt="Sunset in the mountains" />
+                                            <div className="px-6 py-4 h-full">
+                                                <div className="font-bold text-xl mb-2">{message.title}</div>
+                                                <p className="text-gray-700 text-base">
+                                                    {message.description}
+                                                </p>
+                                            </div>
+                                            <button  onClick={() => router.push(`/message/${message.id}`)} className="w-full bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                                <span>View</span>
+                                            </button>
+                                        </div>
 
-                                <div className="w-full rounded overflow-hidden shadow-lg  relative flex flex-col">
-                                    <img className="w-full" src="/images/rpn/1.jpg" alt="Sunset in the mountains" />
-                                    <div className="px-6 py-4 h-full">
-                                        <div className="font-bold text-xl mb-2">The true word</div>
-                                        <p className="text-gray-700 text-base">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <button className="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                                        <span>check it out</span>
-                                    </button>
-                                </div>
 
-                                <div className="w-full rounded overflow-hidden shadow-lg ">
-                                    <img className="w-full" src="/images/rpn/1.jpg" alt="Sunset in the mountains" />
-                                    <div className="px-6 py-4">
-                                        <div className="font-bold text-xl mb-2">Another message</div>
-                                        <p className="text-gray-700 text-base">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                                        </p>
-                                    </div>
-                                    <button className="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                                        <span>check it out</span>
-                                    </button>
-                                </div>
+                                    </Transition>
+                                )
+                            }
 
-                                <div className="w-full rounded overflow-hidden shadow-lg ">
-                                    <img className="w-full" src="/images/rpn/1.jpg" alt="Sunset in the mountains" />
-                                    <div className="px-6 py-4">
-                                        <div className="font-bold text-xl mb-2">RPN is awesome</div>
-                                        <p className="text-gray-700 text-base">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                                        </p>
-                                    </div>
-                                    <button className="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                                        <span>check it out</span>
-                                    </button>
-                                </div>
+                                   
 
-                            </div>
-
-                        </Transition>
-                    )
+                        })
                 }
-                )
-            }
+            </div>
 
             <div className='mb-16 mt-16   text-center'>
                 <div className=' text-4xl inline-flex cursor-pointer hover:animate-bounce'>
-                    <p className='mr-3 text-center'>checkout all</p> 
-                    <RiLightbulbFlashLine/>
+                    <p className='mr-3 text-center'>checkout all</p>
+                    <RiLightbulbFlashLine />
                 </div>
-                
+
             </div>
 
         </div>

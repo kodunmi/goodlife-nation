@@ -5,8 +5,8 @@ export interface IBaseResponse<T> {
 }
 
 export interface IRoyalChapter {
-    lat: string | number | boolean | readonly string[] | readonly number[] | readonly boolean[] | null | undefined;
-    lng: string | number | boolean | readonly string[] | readonly number[] | readonly boolean[] | null | undefined;
+    lat: any;
+    lng: any;
     id: string;
     name: string;
     description: string;
@@ -56,7 +56,7 @@ export interface IUser {
     isBishop: boolean;
     isTenLeader: boolean;
     isLeader: boolean;
-    converts: IConvert[] |null;
+    converts?: IConvert[];
 }
 
 export interface IPreferences {

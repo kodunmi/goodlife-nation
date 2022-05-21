@@ -137,7 +137,7 @@ const MessagePage = () => {
         isError ? <p>Error Loading</p> : isLoading ? <BeatLoader /> : (
           <div>
             <div className='pt-20 xl:pt-0'>
-              {/* {plyrVideo} */}
+               {plyrVideo}
             </div>
             <div className='p-10'>
               <div className='flex items-center mb-4'>

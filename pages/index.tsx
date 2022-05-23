@@ -164,7 +164,7 @@ const Home: NextPage = () => {
               <h3 className='text-secondary font-bold text-3xl mb-3 dark:!text-slate-200' >The Goodlife Family Church</h3>
               <hr />
               <p className='text-secondary text-lg mb-10 mt-3 dark:!text-slate-200'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus deserunt numquam nam facere corporis! Temporibus ipsam quaerat natus vero delectus.
+              Awakening Generations To Their Inheritance In Christ; Teaching Them How To Live The Good Life; And Making Ready A People Led By The Spirit Prepared For The Lord.
               </p>
               <a href="" className='px-10 py-3 text-sm bg-primary text-white rounded-lg hover:bg-secondary ease-in duration-300'>
                 Contact Us

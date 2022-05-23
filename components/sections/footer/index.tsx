@@ -1,12 +1,13 @@
+import Link from 'next/link'
 import React from 'react'
 import { navigation } from '../..'
 
 export const Footer = () => {
   return (
-    <footer className="text-center pt-12 border-t border-slate-200 flex flex-col justify-center w-full items-center bg-gray-900 text-white">
+    <footer className="text-center pt-12 border-t border-slate-200 flex flex-col justify-center w-full items-center dark:bg-gray-900 bg-gray-50  dark:text-white text-slate-700">
     <div className="container  px-6 pt-6">
       <div className="flex justify-center mb-6">
-        <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+        <a href="#!" type="button" className="rounded-full border-2 dark:border-white border-black dark:text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
           <svg aria-hidden="true"
           focusable="false"
           data-prefix="fab"
@@ -23,7 +24,7 @@ export const Footer = () => {
           </svg>
         </a>
   
-        <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+        <a href="#!" type="button" className="rounded-full border-2 dark:border-white border-black dark:text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
           <svg aria-hidden="true"
           focusable="false"
           data-prefix="fab"
@@ -40,7 +41,7 @@ export const Footer = () => {
           </svg>
         </a>
   
-        <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+        <a href="#!" type="button" className="rounded-full border-2 dark:border-white border-black dark:text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
           <svg aria-hidden="true"
           focusable="false"
           data-prefix="fab"
@@ -57,7 +58,7 @@ export const Footer = () => {
           </svg>
         </a>
   
-        <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+        <a href="#!" type="button" className="rounded-full border-2 dark:border-white border-black dark:text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
           <svg aria-hidden="true"
           focusable="false"
           data-prefix="fab"
@@ -74,7 +75,7 @@ export const Footer = () => {
           </svg>
         </a>
   
-        <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+        <a href="#!" type="button" className="rounded-full border-2 dark:border-white border-black dark:text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
           <svg aria-hidden="true"
           focusable="false"
           data-prefix="fab"
@@ -91,7 +92,7 @@ export const Footer = () => {
           </svg>
         </a>
   
-        <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+        <a href="#!" type="button" className="rounded-full border-2 dark:border-white border-black dark:text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
           <svg aria-hidden="true"
           focusable="false"
           data-prefix="fab"
@@ -143,7 +144,7 @@ export const Footer = () => {
             </div>
   
             <div className="md:mr-auto mb-6">
-              <button type="submit" className="inline-block px-6 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+              <button type="submit" className="inline-block px-6 py-2 border-2 dark:border-white dark:text-white border-black font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
                 Subscribe
               </button>
             </div>
@@ -153,9 +154,7 @@ export const Footer = () => {
   
       <div className="mb-6">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-          repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-          eum harum corrupti dicta, aliquam sequi voluptate quas.
+        Awakening Generations To Their Inheritance In Christ; Teaching Them How To Live The Good Life; And Making Ready A People Led By The Spirit Prepared For The Lord
         </p>
       </div>
   
@@ -165,8 +164,11 @@ export const Footer = () => {
           <ul className="list-none mb-0 flex">
             {
               navigation.map((item, index) => (
-                <li key={`fotter-${index}`}>
-                <a href="#!" className="text-white mr-4">{item.name}</a>
+                <li className="dark:text-white mr-4" key={`fotter-${index}`}>
+                  <Link href={item.href}>
+                  {item.name}
+                  </Link>
+                {/* <a href="" className="text-white mr-4">{item.name}</a> */}
               </li>
               )
               )
@@ -182,7 +184,7 @@ export const Footer = () => {
   
     <div className="text-center p-4">
       © 2021 Copyright:
-      <a className="text-white" href="https://tailwind-elements.com/">The goodlife family</a>
+      <a className="dark:text-white" href="https://tailwind-elements.com/"> The goodlife family</a>
     </div>
   </footer>
   )

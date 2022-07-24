@@ -148,7 +148,8 @@ const Home: NextPage = () => {
   return (
     <AppLayout>
       <Head>
-        <title>The Goodlife Nation</title>
+        <title>The Good-life Nation</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header />
       <div>
@@ -160,8 +161,8 @@ const Home: NextPage = () => {
             {/* <motion.img ref={ref} animate={controls}  initial='initial' exit="hidden" src="/images/1.jpg" alt="" className='rounded-3xl bg-blend-overlay bg-primary' /> */}
             {/* <Example /> */}
             <div className='mt-4 mb-10 md:mb-10'>
-              <p className='text-primary text-sm mb-3 dark:!text-slate-200'><b>TGN</b> - a people a coming</p>
-              <h3 className='text-secondary font-bold text-3xl mb-3 dark:!text-slate-200' >The Goodlife Family Church</h3>
+              <p className='text-primary text-sm mb-3 dark:!text-slate-200'><b>TGN</b> - a people come</p>
+              <h3 className='text-secondary font-bold text-3xl mb-3 dark:!text-slate-200' >The Good-life Family Church</h3>
               <hr />
               <p className='text-secondary text-lg mb-10 mt-3 dark:!text-slate-200'>
               Awakening Generations To Their Inheritance In Christ; Teaching Them How To Live The Good Life; And Making Ready A People Led By The Spirit Prepared For The Lord.
@@ -180,10 +181,10 @@ const Home: NextPage = () => {
               <h3 className='text-secondary font-bold text-3xl mb-3 dark:!text-slate-200' >Our Year Of Perfection</h3>
               <hr />
               <h3 className='text-secondary text-4xl mb-2 mt-3 dark:!text-slate-200'>
-                The Month Of Double Portion
+              Our month of THE INCREASE OF GOD
               </h3>
               <p className='mb-10'>
-                <b>For this is my telling month</b> The manifestation of the month of God for me
+                I/We now overflow with the Increase of God that fills all things in all things in Jesus Name. Amen!
               </p>
               <a href="/word-for-the-month" className='px-10 py-3 text-sm bg-primary text-white rounded-lg hover:bg-secondary ease-in duration-300'>
                 Check Others
@@ -230,7 +231,7 @@ const Home: NextPage = () => {
           <div className='mb-16 pb-8  max-w-5xl md:grid-cols-2 grid grid-cols-1 gap-6'>
 
             <div className='mt-4 mb-10 md:mb-0'>
-              <p className='text-primary text-sm mb-3 dark:!text-slate-200'><b>TGN</b> - a people a coming</p>
+              <p className='text-primary text-sm mb-3 dark:!text-slate-200'><b>TGN</b> - a people come</p>
               <h3 className='text-secondary font-bold text-3xl mb-3 dark:!text-slate-200 ' >Walk With Us And Work With Us</h3>
               <hr />
               <ul className='mt-4'>

@@ -27,8 +27,8 @@ const vmoList = [
         link: 'https://www.gstatic.com/images/branding/product/1x/docs_48dp.png'
     },
     {
-        title: 'Objectives',
-        description: 'Establishing The Kingdom Of God And It\'s Culture In And Amongst Men',
+        title: 'Word For The Month',
+        description: 'I/We now overflow with the Increase of God that fills all things in all things in Jesus Name.Amen!',
         icon: <RiBookMarkLine size={50}/>,
         link: 'https://www.gstatic.com/images/branding/product/1x/keep_48dp.png'
     }

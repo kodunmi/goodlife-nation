@@ -22,7 +22,7 @@ const cats: {
    
     {
         id: 1,
-        title: 'New Creation Realty',
+        title: 'New Creation Realities',
         tag: 'NCR',
     },
     {
@@ -37,7 +37,7 @@ const cats: {
     },
     {
         id: 4,
-        title: 'The Goodlife Praise',
+        title: 'The Good-life Praise',
         tag: 'TGP',
     },
     

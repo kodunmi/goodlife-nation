@@ -37,15 +37,15 @@ function AboutUsPage() {
         <AppLayout>
 
             <div className='pt-40 px-5 pb-20'>
-                <h1 className='text-5xl text-center'>The <span className='text-primary'>Goodlife</span>  Nation</h1>
-                <p className='text-center mb-20'>Extra ordinary people led by the spirit of God</p>
+                <h1 className='text-5xl text-center'>The <span className='text-primary'>GOOD_LIFE</span>  Nation</h1>
+                <p className='text-center mb-20'>Extraordinary people led by the spirit of God</p>
                 <div className='max-w-5xl  mx-auto md:grid-cols-2 grid grid-cols-1 gap-6'>
                     <motion.div variants={ImageVariable} animate={controls} ref={ref} initial='initial' exit="hidden" className='bg-[url("/images/rpn/6.jpg")] bg-no-repeat bg-cover bg-top rounded-lg p-5 h-[300px] md:h-auto bg-blend-overlay'>
                         <img src="/logo.png" alt="" className='w-12' />
                     </motion.div>
 
                     <div className='mt-4 mb-10 md:mb-10'>
-                        <p className='text-primary text-sm mb-3 dark:!text-slate-200'><b>TGN</b> - President founder</p>
+                        <p className='text-primary text-sm mb-3 dark:!text-slate-200'><b>TGN</b> - President</p>
                         <h3 className='text-secondary font-bold text-3xl mb-3 dark:!text-slate-200' >Rev. P.N. Utomi</h3>
                         <hr />
                         <p className='text-secondary text-lg mb-10 mt-3 dark:!text-slate-200'>
@@ -54,7 +54,7 @@ function AboutUsPage() {
                     </div>
                 </div>
                 <div className='mt-20 max-w-4xl mx-auto'>
-                    <h2 className='text-xl text-center mb-5 text-cyan-300'>What is the vision of TGP ?</h2>
+                    <h2 className='text-xl text-center mb-5 text-cyan-300'>What is the vision of TGN ?</h2>
                     <ul className='list-disc'>
                         <li>
                             <p>wakening generations to their inheritance in Christ, teaching them how to live the good life, making ready extraordinary people led by the Spirit, prepared for the Lord.</p>
@@ -74,7 +74,7 @@ function AboutUsPage() {
                     <h3 className='text-3xl text-center'>Repositioning God in the consciousness and priority of man.</h3>
 
                     <h2 className='text-xl text-center mb-5 mt-10 text-cyan-300'>What do we hope to achieve with this ?</h2>
-                    <h3 className='text-3xl text-center'>Establishing the Kingdom of God and its’ Culture in and amongst men.</h3>
+                    <h3 className='text-3xl text-center'>Establishing the Kingdom of God and its Culture in and amongst men.</h3>
 
 
 

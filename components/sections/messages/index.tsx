@@ -19,7 +19,7 @@ export const Messages = () => {
         },
         {
             id: 2,
-            title: 'New Creation Reality',
+            title: 'New Creation Realities',
             content: 'Prayer Request',
             tag: 'NCR',
         },
@@ -31,7 +31,7 @@ export const Messages = () => {
         },
         {
             id: 4,
-            title: 'The Goodlife Praise',
+            title: 'The Good life Praise',
             content: 'Truth In Reality',
             tag: 'TGP',
         },

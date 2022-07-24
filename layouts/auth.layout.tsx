@@ -22,7 +22,7 @@ export const AuthLayout = ({ children }: AppLayoutProps) => {
             </div>
 
             <div className='text-white hidden md:flex flex-col justify-center items-center w-7/12 bg-[url("/images/rpn/4.jpg")] bg-blend-overlay bg-primary bg-cover bg-no-repeat'>
-                <h3 className="font-['Yellowtail'] text-6xl tracking-tight font-extrabold  sm:text-7xl md:text-8xl text-center"> The <br /> Goodlife <br /> Nation</h3>
+                <h3 className="font-['Yellowtail'] text-6xl tracking-tight font-extrabold  sm:text-7xl md:text-8xl text-center"> The <br /> Good-life <br /> Nation</h3>
                 <p className='text-xl font-bold'>Extra-ordinary people led by the spirit of God</p>
                 <div className='flex justify-around px-7 text-[#0d2a66]'>
                     {

@@ -70,7 +70,7 @@ const ResetPasswordPage = () => {
     return (
         <AuthLayout>
             <Head>
-                <title>Reset Password - The Goodlife Nation</title>
+                <title>Reset Password - The Good-life Nation</title>
             </Head>
             <div>
                 <div className="flex items-center mt-8 mb-10">

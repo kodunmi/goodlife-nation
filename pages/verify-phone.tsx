@@ -83,7 +83,7 @@ const VerifyPhonePage = () => {
     return (
         <AuthLayout>
             <Head>
-                <title>Verify Phone - The Goodlife Nation</title>
+                <title>Verify Phone - The Good-life Nation</title>
             </Head>
             <div>
                 <div className="flex items-center mt-8 mb-10">

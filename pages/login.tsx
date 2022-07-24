@@ -56,7 +56,7 @@ const LoginPage = () => {
   return (
     <AuthLayout>
       <Head>
-        <title>Login - The Goodlife Nation</title>
+        <title>Login - The Good-life Nation</title>
       </Head>
       <div>
         <div className='grid grid-cols-2 mt-4 w-full mb-8 gap-3'>

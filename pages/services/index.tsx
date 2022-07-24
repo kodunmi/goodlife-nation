@@ -8,7 +8,7 @@ import { AppLayout } from '../../layouts'
 const serviceList = [
     {
         id: 1,
-        title: 'New Creation Reality',
+        title: 'New Creation Realities',
         image: '/images/rpn/1.jpg',
         time: 'Every Sunday at 10:00am',
     },
@@ -20,7 +20,7 @@ const serviceList = [
     },
     {
         id: 2,
-        title: 'The Goodlife Praise',
+        title: 'The Good life Praise',
         image: '/images/rpn/2.jpg',
         time: 'Every First Sunday at 10:00am',
     },

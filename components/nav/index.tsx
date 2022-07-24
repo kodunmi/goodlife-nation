@@ -156,7 +156,7 @@ export const NavBar = () => {
                                 <a
                                     key={item.name}
                                     href={item.href}
-                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-slate-200 hover:text-gray-900 hover:bg-gray-50"
+                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-slate-200 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-primary"
                                 >
                                     {item.name}
                                 </a>

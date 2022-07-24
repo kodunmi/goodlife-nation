@@ -47,7 +47,7 @@ const ForgetPasswordPage = () => {
   return (
     <AuthLayout>
       <Head>
-        <title>Forget Password- The Goodlife Nation</title>
+        <title>Forget Password- The Good-life Nation</title>
       </Head>
       <div>
 

@@ -210,8 +210,8 @@ const Home: NextPage = () => {
         <div>
           <div className="w-full text-center bg-cover bg-no-repeat bg-top" style={{ backgroundImage: "url('/images/rpn/3.jpg')" }}>
             <div className='py-32'>
-              <h2 className='mt-10 mb-4 text-4xl text-center italic tracking-tight font-extrabold text-slate-200 sm:text-5xl md:text-6xl'>Rev. P.M Utomi</h2>
-              <p className='text-center text-white inline-block align-middle text-lg max-w-md' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nesciunt at dolores laborum corporis dolore quae blanditiis incidunt, iure fugiat error minus .</p>
+              <h2 className='mt-10 mb-4 text-4xl text-center italic tracking-tight font-extrabold text-slate-200 sm:text-5xl md:text-6xl'>Word For The Month</h2>
+              <p className='text-center text-white inline-block align-middle text-lg max-w-md' >I/We now overflow with the Increase of God that fills all things in all things in Jesus Name. Amen!</p>
               <div className='mt-20'>
                 <a className='inline-block  px-6 py-2 border-2 mr-3 border-white text-white font-medium text-xs leading-tight uppercase rounded-xl hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out' href='/rpn-today'>
                   RPN TODAY
